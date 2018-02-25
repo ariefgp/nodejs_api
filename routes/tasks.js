@@ -1,10 +1,8 @@
 module.exports = app => {
+	const Tasks = app.db.models.Tasks;
 	app.get("/tasks", (req, res) => {
-		res.json({
-			tasks: [
-			{title: "Buy some shoes"},
-			{title: "Fix notebook"}
-			]
+		Tasks.findAll({}).then(tasks => {
+			res.json({tasks: tasks});
 		});
 	});
 };
